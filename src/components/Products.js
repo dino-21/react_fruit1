@@ -10,11 +10,12 @@ const Products = (props) => {
 
 
   return (
-    <div className="col-md-4">
+    <div className="col-md-4"  style={{marginBottom:"50px"}}>
       <Nav.Link onClick={() => {navigate('/detail/'+id) }}  style={{ textdecoration: "none", color: "#000", textAlign: "center" }}>
         <img src={imgUrl}  width="80%" />
-        <h4>{title}</h4>
-        <p>{price}</p>
+        <h5 style={{marginTop:"10px"}}>{title}</h5>
+        <p>{content}</p>
+        <span>{price}</span>
       </Nav.Link>
     </div>
   );
