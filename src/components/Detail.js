@@ -17,7 +17,6 @@ let Box = styled.div`
 `;
 
 let YellowBtn = styled.button`
-  background : gold;
   color : white;
   font-size:30px;
   width:100%;
@@ -49,7 +48,7 @@ const { id, imgUrl, title, content, price } = selproduct;
 let dispatch = useDispatch();
 
   return (
-    <div className={'container start' + fade2}>
+    <div className={'container start ' + fade2}>
 
       <Box>
           <YellowBtn>과일농장의 맛과 건강을 선물하세요.</YellowBtn>
