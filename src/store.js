@@ -1,4 +1,6 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
+
+
 // 'user'라는 이름의 상태 만들기
 let user = createSlice({
     name : 'user',
@@ -15,21 +17,8 @@ let user = createSlice({
     }
   })
 
-
-  
-//   increase(10)
-//   increase(100)
-
 // 위에서 만든 함수들 밖에서도 쓸 수 있게 내보내기
 export let { changeName, increase } = user.actions
-
-/*
-increase(state, action) 이 함수는 reducer 함수
-state(현재 상태)를 어떻게 바꿀지 정하는 상태 변경 함수
-action은 Redux가 자동으로 보내주는 객체
-보통 type, payload 등의 정보를 담고 있다.
-예: { type: 'user/increase', payload: 10 }
-*/
 
 
 
@@ -39,9 +28,9 @@ action은 Redux가 자동으로 보내주는 객체
 let cart = createSlice({
     name : 'cart',
     initialState : [
-      {id : 0, imgurl:'fruit1.jpg', name : '수박', count : 2},
-      {id : 1, imgurl:'fruit2.jpg', name : '참외', count : 1},
-      {id : 2, imgurl:'fruit3.jpg', name : '사과', count : 1}
+      {id : 1, imgurl:'fruit1.jpg', name : '수박', count : 2},
+      {id : 2, imgurl:'fruit2.jpg', name : '참외', count : 1},
+      {id : 3, imgurl:'fruit3.jpg', name : '사과', count : 1}
     ],
     reducers : {
      // 상품 수량 1개 늘리기
@@ -94,7 +83,6 @@ let cart = createSlice({
 
 // cart 함수들도 밖에서 쓸 수 있게 내보내기
 export let { addCount, decreaseCount, addItem, deleteItem, sortName } = cart.actions;
-
 
 
 // 실제로 Redux에 등록해주는 부분

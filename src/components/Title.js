@@ -1,3 +1,4 @@
+
 import React from "react";
 
 const Title = () => {
@@ -17,4 +18,3 @@ const Title = () => {
 };
 
 export default Title;
-
