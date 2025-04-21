@@ -173,7 +173,7 @@ function App() {
           <Route path="/detail/:paramId" element={<Detail fruit={fruit} />} />
           <Route path="/cart" element={<Cart />} />
 
-          <Route path="/aAbout" element={<About />}>
+          <Route path="/about" element={<About />}>
             <Route path="member" element={<Member />} />
             <Route path="location" element={<Location />} />
           </Route>
@@ -188,7 +188,7 @@ function App() {
 function About() {
   return (
     <>
-      <h4>회사정보임</h4>
+      <h4>회사정보</h4>
       <Outlet></Outlet>
     </>
   );
