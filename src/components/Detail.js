@@ -1,14 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react"; // 한 줄로 합침
 import { addItem } from "../store.js";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
-
 
 
 let Banner = styled.div`
@@ -26,54 +24,58 @@ let BannerBtn = styled.button`
   background-size:cover;
   background-position:center;
 `;
+
+
 function Detail(props) {
+  let { paramId } = useParams();
+  let [tap, setTap] = useState(0);
+
+  // React Hook은 조건 없이 컴포넌트 최상단에서 호출되어야 함
+  let [fade2, setFade2] = useState("");
+
+  // dispatch 정의 추가
+  const dispatch = useDispatch();
+
   useEffect(() => {
     setFade2("end");
     return () => {
       setFade2("");
     };
   }, []);
-  let { paramId } = useParams();
-  let dispatch = useDispatch(); //Hook들은 조건문 위쪽에서 무조건 실행되도록 위치를 조정
 
-  let [tap, setTap] = useState(0);
-  let [fade2, setFade2] = useState("");
+  // 상품 유효성 체크 (이건 Hook 호출 이후에 실행되어야 함)
 
-  
+  let selproduct = props.fruit.find((x) => x.id === Number(paramId));
 
-  // 내가 선택한 상품이 fruit.js 안에 있는 상품인지 유효성체크 후 데이터를 가져 옴
-  // paramId는 문자열이므로 숫자로 변환해서 비교
- let selproduct = props.fruit.find((x) => x.id === Number(paramId));
-
-
- //유효성 체크: 상품이 없다면 "상품이 존재하지 않습니다." 메시지 출력
+  // 훅은 조건문(if) 아래에서 호출하면 안 됨 (React가 Hook 순서 기억을 못함)
   if (!selproduct) {
     return <div>해당 상품이 존재하지 않습니다.</div>;
   }
 
   const { id, imgUrl, title, content, price } = selproduct;
-  
+
   console.log("내가 선택한 상품은: " + id + " " + title);
 
   return (
     <div className={"container start " + fade2}>
 
     <Banner>
-      <BannerBtn>과일농장의 맛과 건강을 선물하세요.</BannerBtn>
-    </Banner>
+	  <BannerBtn>과일농장의 맛과 건강을 선물하세요.</BannerBtn>
+	</Banner>
 
-      <div className="row" style={{ marginBottom: "50px" }}>
+
+      <div className="row">
         <div className="col-md-6">
           <img src={"/" + imgUrl} width="100%" alt={title} />
         </div>
         <div className="col-md-6">
-          <h4 className="pt-5">{title}</h4>
+          <h5 className="pt-5">{title}</h5>
           <p>{content}</p>
           <p>{price}</p>
           <Button
             variant="primary"
             onClick={() => {
-              //  dispatch(addItem(  {id : 2,  imgurl : 'shoes1.jpg', name : 'Grey Yordan', count : 1}))
+              //  dispatch(addItem(  {id : 1,  imgurl : 'fruit1.jpg', name : 'Grey Yordan', count : 1}))
 
               dispatch(
                 addItem({
@@ -95,15 +97,40 @@ function Detail(props) {
         </div>
       </div>
 
-      <Nav variant="tabs" defaultActiveKey="link0">
+      <Nav
+        variant="tabs"
+        defaultActiveKey="link0"
+        style={{ marginTop: "50px" }}
+      >
         <Nav.Item>
-          <Nav.Link eventKey="link0" onClick={() => { setTap(0); }}>버튼0</Nav.Link>
+          <Nav.Link
+            onClick={() => {
+              setTap(0);
+            }}
+            eventKey="link0"
+          >
+            버튼0
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link1" onClick={() => { setTap(1); }}>버튼1</Nav.Link>
+          <Nav.Link
+            onClick={() => {
+              setTap(1);
+            }}
+            eventKey="link1"
+          >
+            버튼1
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link2" onClick={() => { setTap(2); }}>버튼2</Nav.Link>
+          <Nav.Link
+            onClick={() => {
+              setTap(2);
+            }}
+            eventKey="link2"
+          >
+            버튼2
+          </Nav.Link>
         </Nav.Item>
       </Nav>
 

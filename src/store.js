@@ -1,6 +1,4 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-
-
 // 'user'라는 이름의 상태 만들기
 let user = createSlice({
     name : 'user',
@@ -19,9 +17,6 @@ let user = createSlice({
 
 // 위에서 만든 함수들 밖에서도 쓸 수 있게 내보내기
 export let { changeName, increase } = user.actions
-
-
-
 
 
 // 'cart'라는 이름의 상태 만들기 (장바구니)
@@ -83,6 +78,7 @@ let cart = createSlice({
 
 // cart 함수들도 밖에서 쓸 수 있게 내보내기
 export let { addCount, decreaseCount, addItem, deleteItem, sortName } = cart.actions;
+
 
 
 // 실제로 Redux에 등록해주는 부분
