@@ -52,7 +52,7 @@ function Cart() {
                   {/* 장바구니에 있는 상품 목록 출력 */}
                   {cart.map(({ id, imgurl, name, count }, i) => (
                     <tr key={i}>
-                      <td style={textverticalAlign}>{id + 1}</td>
+                      <td style={textverticalAlign}>{id}</td>
                       {/* 이미지 클릭 시 해당 상품 상세 페이지로 이동 */}
                       <td>
                         <Link to={`/detail/${id}`}>
